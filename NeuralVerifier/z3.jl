@@ -1,4 +1,4 @@
-module SMT
+module NeuralVerifier
 
 using PyCall
 using Conda
