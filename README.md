@@ -1,6 +1,6 @@
 # NeuralVerifier
 
-[![](https://img.shields.io/badge/docs-stable-blue.svg?style=flat-square)](https://jaypmorgan.github.io/NeuralVerifier.jl/stable)
+[![](https://img.shields.io/badge/docs-stable-blue.svg?style=flat-square)](https://jaypmorgan.github.io/NeuralVerifier.jl/dev)
 
 Verification of Neural Networks in Julia.
 
