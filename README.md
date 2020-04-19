@@ -108,7 +108,7 @@ We can then apply some additional constraint, such as the input must be within a
 ```julia
 # all dimensions must be within the range (-10, 10)
 for i = 1:n_dims
-    add!(solver, input[i] < 10 $\land$ > -10)
+    add!(solver, input[i] < 10 ∧ input[i] > -10)
     # or add!(solver, And(input[i] < 10, input[i] > -10)
 end
 ```
@@ -155,7 +155,7 @@ end
 solver = Solver()
 input  = [Z3Float("x$i") for i = 1:INPUT_SIZE]
 for i = 1:n_dims
-    add!(solver, input[i] < 10 $\land$ > -10)
+    add!(solver, input[i] < 10 ∧ input[i] > -10)
 end
 
 # add our final constraint to check for
