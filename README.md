@@ -136,7 +136,7 @@ HIDDEN_SIZE = 50
 
 neural_network = Chain(
 	Dense(INPUT_SIZE, HIDDEN_SIZE, Flux.relu),
-	Dense(20, 1);  # scalar output -- i.e. for regression
+	Dense(HIDDEN_SIZE, 1);  # scalar output -- i.e. for regression
 
 # train the network...
 
@@ -177,7 +177,7 @@ We have thus far included support for the following layers:
 
 And the following non-linearites:
 
-- Sigmoid (sigmoid)
+- Sigmoid (sigmoid -- hidden non-linearities currently uses limited precision that is not yet production quality)
 - ReLU (relu)
 - Softmax (softmax)
 
