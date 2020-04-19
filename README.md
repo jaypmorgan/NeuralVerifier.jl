@@ -50,7 +50,7 @@ Create an SMT encoding of an existing Neural Network:
 # build an network with FluxML
 neural_network = Chain(
 	Dense(30, 20, Flux.relu),
-	Dense(20, 1);  # scalar output -- i.e. for regression
+	Dense(20, 1));  # scalar output -- i.e. for regression
 
 # train the network...
 
@@ -97,8 +97,7 @@ solver = Solver()
 And add some variables that represent each dimension of the input
 
 ```julia
-n_dims = 30
-input = [Z3Float("x$i") for i = 1:n_dims]
+input = [Z3Float("x$i") for i = 1:INPUT_SIZE]
 ```
 
 Notice how each input dimension was given a different name (i.e. x1, x2, and so on). If we didn't give the variable a unique name, it would have been overwritten in the Z3 solver.
@@ -107,7 +106,7 @@ We can then apply some additional constraint, such as the input must be within a
 
 ```julia
 # all dimensions must be within the range (-10, 10)
-for i = 1:n_dims
+for i = 1:INPUT_SIZE
     add!(solver, input[i] < 10 ∧ input[i] > -10)
     # or add!(solver, And(input[i] < 10, input[i] > -10)
 end
@@ -136,7 +135,7 @@ HIDDEN_SIZE = 50
 
 neural_network = Chain(
 	Dense(INPUT_SIZE, HIDDEN_SIZE, Flux.relu),
-	Dense(HIDDEN_SIZE, 1);  # scalar output -- i.e. for regression
+	Dense(HIDDEN_SIZE, 1));  # scalar output -- i.e. for regression
 
 # train the network...
 
