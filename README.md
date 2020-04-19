@@ -1,4 +1,4 @@
-# Neural Verifier
+# NeuralVerifier
 
 Verification of Neural Networks.
 
@@ -6,7 +6,7 @@ Verification of Neural Networks.
 
 ### Prerequisites 
 
-NeuralVerifier uses the [Z3](https://github.com/Z3Prover/z3) as the backend SMT solver. To run NeuralVerifier, this module must be installed via python's pip:
+NeuralVerifier uses the [Z3](https://github.com/Z3Prover/z3) as the backend SMT solver. To run NeuralVerifier, this [module](https://pypi.org/project/z3-solver/) must be installed via python's pip:
 
 ```bash
 pip install z3-solver
