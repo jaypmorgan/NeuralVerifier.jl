@@ -11,9 +11,7 @@ using NeuralVerifier
 makedocs(
     sitename = "NeuralVerifier.jl",
     authors = "Jay Morgan",
-    format = Documenter.HTML(
-        prettyurls = false,
-    ),
+    format = Documenter.HTML(),
     pages = [
         "Home" => "index.md",
         "Examples" => "examples.md",
