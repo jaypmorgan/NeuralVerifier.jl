@@ -101,26 +101,67 @@ n_dims = 30
 input = [Z3Float("x$i") for i = 1:n_dims]
 ```
 
+Notice how each input dimension was given a different name (i.e. x1, x2, and so on). If we didn't give the variable a unique name, it would have been overwritten in the Z3 solver.
+
 We can then apply some additional constraint, such as the input must be within a particular range:
 
 ```julia
 # all dimensions must be within the range (-10, 10)
 for i = 1:n_dims
-	add!(solver, input[i] < 10 $\land$ > -10)
-	# or add!(solver, And(input[i] < 10, input[i] > -10)
+    add!(solver, input[i] < 10 $\land$ > -10)
+    # or add!(solver, And(input[i] < 10, input[i] > -10)
 end
 ```
 
 And add out search condition (just another constraint).
 
 ```julia
-Is there some input within the range(-10, 10) that results in an output > 100
+# Is there some input within the range(-10, 10) that results in an output > 100
 add!(solver, encoding(input) > 100)
 ```
 
 Finally, we can start the verification process and check whether the constraints are satisfiable.
 
 ```julia
+check(solver)  # probably will take a while for very large networks
+print(m.is_sat)
+```
+
+In summary our example script is as follows:
+
+```julia
+# build an network with FluxML
+INPUT_SIZE  = 30
+HIDDEN_SIZE = 50
+
+neural_network = Chain(
+	Dense(INPUT_SIZE, HIDDEN_SIZE, Flux.relu),
+	Dense(20, 1);  # scalar output -- i.e. for regression
+
+# train the network...
+
+# generate the SMT encoding of the _trained_ network
+encoding(x) = begin
+	detach(x) = Tracker.data(x)
+    y = dense(x,
+              neural_network[1].W |> detach,
+              neural_network[1].b |> detach) |> relu;
+    y = dense(y,
+              neural_network[2].W |> detach,
+              neural_network[2].b |> detach);
+end
+
+# instantiate our solver and add input variables
+solver = Solver()
+input  = [Z3Float("x$i") for i = 1:INPUT_SIZE]
+for i = 1:n_dims
+    add!(solver, input[i] < 10 $\land$ > -10)
+end
+
+# add our final constraint to check for
+add!(solver, encoding(input) > 100)
+
+# check for satisfiability and print output
 check(solver)
 print(m.is_sat)
 ```
