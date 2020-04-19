@@ -1,5 +1,7 @@
 # NeuralVerifier
 
+![Documentation](https://github.com/jaypmorgan/NeuralVerifier.jl/workflows/Documentation/badge.svg)
+
 Verification of Neural Networks in Julia.
 
 ## Installation
