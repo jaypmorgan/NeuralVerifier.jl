@@ -3,10 +3,11 @@ module NeuralVerifier
 using PyCall
 using Conda
 
+
 z3 = try
     pyimport_conda("z3", "z3")
 catch
-    throw("Error importing Z3, please install `z3-solver via pip`")
+    throw("Error importing Z3, please install `z3-solver`. Example: `pip install z3-solver`")
 end
 
 z3.set_param("parallel.enable", true)
@@ -31,7 +32,6 @@ export
     ∨,
     ⟹,
     ¬
-
 
 mutable struct Solver
     solver
@@ -120,4 +120,5 @@ end
 ⟹(x::T, y::T) where {T <: PyObject} = z3.Implies(x, y)
 ¬(x::T) where {T <: PyObject} = z3.Not(x)
 
+include("encoding.jl")
 end

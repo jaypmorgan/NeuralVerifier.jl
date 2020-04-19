@@ -11,12 +11,12 @@ function sigmoid(x::PyObject)
 end
 
 """
-    sigmoid(x, binary)
+    sigmoid_bool(x)
 
 Apply the piecewise softmax function with 2 splits
 for binary classification.
 """
-function sigmoid(x::PyObject; binary)
+function sigmoid_bool(x::PyObject)
     If(x < 0, 0.0, 1.0)
 end
 

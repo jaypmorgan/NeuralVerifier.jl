@@ -51,7 +51,7 @@ end
 
 Find the actual stable region size for the classifier f.
 """
-function stable_region(::Type{SMT.Solver}, f, x, ϵ; step_size = 0.01, timeout = 10_000,
+function stable_region(::Type{Solver}, f, x, ϵ; step_size = 0.01, timeout = 10_000,
                        build_fn::Function)
     region_sizes::Array{Float64,1} = zero(ϵ)
     adv_exists::Array{Float64,1} = zero(ϵ)
@@ -81,7 +81,7 @@ Search for the closest adversarials in the dataset x using the
 network f, and the encoding: build_fn. In this function ϵ specifies the
 radius for the open-ball region around each xᵢ ∈ x.
 """
-function stable_region(::Type{SMT.Optimize}, f, x::AbstractArray{T,N}, ϵ::AbstractArray{T,1};
+function stable_region(::Type{Optimize}, f, x::AbstractArray{T,N}, ϵ::AbstractArray{T,1};
                        timeout::Int = 10_000, build_fn::Function) where {T,N}
     region_sizes::Array{T,1} = zero(ϵ)
     adv_examples::Array{T,N} = zero(x)
@@ -122,7 +122,7 @@ network f, and the encoding: build_fn. Here ϵ specifies the bounding box
 or hypercube around each data point in x for the search of
 adversarial examples.
 """
-function stable_region(::Type{SMT.Optimize}, f, x::AbstractArray{T,N}, ϵ::AbstractArray{T,3};
+function stable_region(::Type{Optimize}, f, x::AbstractArray{T,N}, ϵ::AbstractArray{T,3};
                        timeout::Int = 10_000, build_fn::Function) where {T,N}
     region_sizes::Array{T,3} = zero(ϵ)
     adv_examples::Array{T,N} = zero(x)
