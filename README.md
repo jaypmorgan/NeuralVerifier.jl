@@ -1,4 +1,4 @@
-![NeuralVerifier](./docs/assets/NerualVerifier-v1.png)
+![NeuralVerifier](./docs/assets/NeuralVerifier-v1.png)
 
 # NeuralVerifier
 
