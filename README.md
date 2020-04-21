@@ -21,14 +21,14 @@ After the installation of Z3, you will be ready to install this library. Install
 ### REPL
 
 ```julia
-] add git@github.com:jaypmorgan/NeuralVerifier.jl.git
+] add http://github.com/jaypmorgan/NeuralVerifier.jl.git
 ```
 
 ### Script
 
 ```julia
 using Pkg
-Pkg.add("git@github.com:jaypmorgan/NeuralVerifier.jl.git")
+Pkg.add("https://github.com/jaypmorgan/NeuralVerifier.jl.git")
 ```
 
 ## Usage
