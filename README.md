@@ -1,5 +1,7 @@
-![NeuralVerifier](./docs/assets/NeuralVerifier-v1.png)
+![NeuralVerifier](./docs/src/assets/logo.png)
+
 [![](https://img.shields.io/badge/docs-stable-blue.svg?style=flat-square)](https://jaypmorgan.github.io/NeuralVerifier.jl/dev)
+
 Verification of Neural Networks in Julia.
 
 ## Installation
