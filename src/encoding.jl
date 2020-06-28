@@ -1,7 +1,7 @@
 module Encoding
 
 using PyCall
-using ..NeuralVerifier: Solver, Optimize
+using ..NeuralVerifier
 
 include("encoding/activations.jl");
 include("encoding/layers.jl");
