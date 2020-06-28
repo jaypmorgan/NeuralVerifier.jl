@@ -1,16 +1,15 @@
+__precompile__()
 module NeuralVerifier
 
 using PyCall
-using Conda
 
+const z3 = PyNULL()
 
-z3 = try
-    pyimport_conda("z3", "z3")
-catch
-    throw("Error importing Z3, please install `z3-solver`. Example: `pip install z3-solver`")
+function __init__()
+    copy!(z3, pyimport("z3"))
+    z3.set_param("parallel.enable", true)
 end
 
-z3.set_param("parallel.enable", true)
 
 export
     z3, # direct access to the pyz3 interface
@@ -86,7 +85,7 @@ end
 var_real_regex = r"(\d+)\/?(\d+)?"
 function variable_string_to_real(v::String)::Float64
     matches = match(var_real_regex, v)
-    if matches[2] != nothing
+    if matches[2] !== nothing
         return parse(BigInt, matches[1]) / parse(BigInt, matches[2])
     else
         return parse(BigInt, matches[1])
@@ -123,7 +122,7 @@ end
 ¬(x::T) where {T <: PyObject} = z3.Not(x)
 
 weight(s::String, n::Int, m::Int) = [Z3Float("$s$(i*j)") for i = 1:n, j = 1:m]
-bias(s::String, n::Int) = [Z3Float("$s$i"); for i = 1:n]
+bias(s::String, n::Int) = [Z3Float("$s$i") for i = 1:n]
 
-include("encoding.jl")
+# include("encoding.jl")
 end
