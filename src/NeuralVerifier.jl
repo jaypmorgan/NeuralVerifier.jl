@@ -124,5 +124,5 @@ end
 weight(s::String, n::Int, m::Int) = [Z3Float("$s$(i*j)") for i = 1:n, j = 1:m]
 bias(s::String, n::Int) = [Z3Float("$s$i") for i = 1:n]
 
-# include("encoding.jl")
+include("encoding.jl")
 end
