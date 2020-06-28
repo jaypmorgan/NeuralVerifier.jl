@@ -1,5 +1,6 @@
 name = "NeuralVerifier"
-author = ["Jay Morgan"]
+uuid = "f920af7d-f098-4514-a94e-58767e173a7b"
+authors = ["Jay Morgan <jaymiles17@gmail.com>"]
 version = "0.1.0"
 
 [deps]
